@@ -1,0 +1,38 @@
+{%extends "main.html"%}
+
+
+{%block body%}
+
+ <nav>
+    <div class="nav-wrapper light-blue lighten-2">
+      <a href="" class="brand-logo center">Srello</a>
+    <ul id="nav-mobile" class="right">
+        <li><a href="/register/">Зарегистрироваться</a></li>
+    </ul>
+    </div>
+  </nav>
+<br>
+ <div class="row">
+    <form class="col s6 push-s3" method="POST">
+      {%csrf_token%}
+      <div class="row">
+        <div class="input-field">
+          <input id="Login" type="text" name="username">
+          <label for="Login">Логин</label>
+        </div>
+    </div>
+    <div class="row">
+      <div class="input-field">
+        <input id="password" type="password" name="password">
+        <label for="password">Пароль</label>
+      </div>
+  </div>
+  <div>
+  	<button type="submit" class="waves-effect light-blue lighten-2 btn">
+ 		Войти
+  	</button>
+  </div>
+    </form>
+  </div>
+        
+{%endblock%}

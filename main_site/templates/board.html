@@ -1,0 +1,74 @@
+{%extends 'homepage.html'%}
+{%block navbar%}
+<li>
+	<a href="/remove_board/{{board.id}}">Удалить доску</a>
+</li>
+<li>
+	<a href="/create_task/{{board.id}}">Добавить задание</a>
+</li>
+{%endblock%}
+{%block extend%}
+<div class="collection">
+	<a href="#!" class="collection-item light-blue lighten-3 center">
+		<span class="darken-3">{{board}}</span>
+	</a>
+</div>
+ <ul class="pagination center">
+ 	{% if page.has_previous %}
+    <li class="waves-effect"><a href="?page={{page.previous_page_number}}"><i class="material-icons">
+    chevron_left</i></a></li>
+    {%else%}
+    <li class="disabled"><a href="#!"><i class="material-icons">
+    chevron_left</i></a></li>
+    {%endif%}
+ 		{%for i in range%}
+
+ 		<li class="{%if i == page.number%}active blue darken-3{% else %}waves-effect{% endif %}"><a href="?page={{i}}">{{i}}</a></li>
+ 		{%endfor%}
+
+    {% if page.has_next %}
+    <li class="waves-effect"><a href="?page={{page.next_page_number}}"><i class="material-icons">
+    chevron_right</i></a></li>
+    {%else%}
+    <li class="disabled "><a href="#!"><i class="material-icons">
+    chevron_right</i></a></li>
+    {%endif%}
+  </ul>
+<div class="row">
+		{%for task, cards in board_cards%}
+		<div class="col s12 m6 l3">
+			<div class="card indigo darken-1">
+				<div class="card-content white-text">
+					<span class="card-title">{{task.name}}</span>
+					{%for card in cards%}
+					<div class="row">
+						<div class="col s12">
+							<div class="card indigo lighten-2">
+								<div class="card-content white-text">
+									<span class="card-title">{{card}}</span>
+									<p>{{card.deadline}}</p>
+									<p>{{card.description}}</p>
+								</div>
+								<div class="card-action">
+									<a href="/remove_card/{{card.id}}">
+									<i class="small material-icons right">cancel</i>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					{%endfor%}
+				</div>
+				<div class="card-action">
+					<a href="/create_card/{{task.id}}">
+						<i class="small material-icons">add_box</i>
+					</a>
+					<a href="/remove_task/{{task.id}}">
+					<i class="small material-icons right">cancel</i>
+				</a>
+				</div>
+			</div>
+		</div>
+		{%endfor%}
+</div>
+{% endblock %}

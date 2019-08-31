@@ -1,0 +1,48 @@
+
+{%extends "main.html"%}
+
+{%block body%}
+<nav>
+	<div class="nav-wrapper light-blue lighten-2">
+		<a href="" class="brand-logo center">Srello</a>
+		<ul id="nav-mobile" class="right">
+			<li><a href="/">Войти</a></li>
+		</ul>
+	</div>
+</nav>
+<br>
+<div class="row">
+	<form class="col s6 push-s3" method="POST">
+		{%csrf_token%}
+		<div class="row">
+			<div class="input-field">
+				<input id="Login" type="text" name="username">
+				<label for="Login">Логин</label>
+				<span class="helper-text">150 символов и меньше. Может содержать латинские сиволы, цифры, _, @, +, . и -.</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field">
+				<input id="password" type="password" name="password">
+				<label for="password">Пароль</label>
+				<span class="helper-text">Минимум 8 символов</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="input-field">
+				<input id="password-" type="password" name="confirm">
+				<label for="password-">Пароль (Снова)</label>
+				<span class="helper-text">Повторите пароль, написанный сверху</span>
+			</div>
+		</div>
+		<div>
+			<button type="submit" class="waves-effect light-blue lighten-2 btn">
+				Зарегестрироваться
+			</button>
+		</div>
+	</form>
+</div>
+
+
+
+{%endblock%}
