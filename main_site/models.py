@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.db import models
 
 from django.contrib.auth.models import User
@@ -17,14 +14,14 @@ class Base(models.Model):
 
 
 class Board(Base):
-	owner = models.ForeignKey(User)
+	owner = models.ForeignKey(User, models.DO_NOTHING)
 
 
 class Task(Base):
-	board = models.ForeignKey(Board)
+	board = models.ForeignKey(Board, models.DO_NOTHING)
 
 
 class Card(Base):
 	description = models.CharField(max_length=1000)
 	deadline = models.DateTimeField()
-	task = models.ForeignKey(Task)
+	task = models.ForeignKey(Task, models.DO_NOTHING)

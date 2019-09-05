@@ -1,10 +1,7 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from datetime import datetime
 
 from django.shortcuts import render, redirect
-from models import Board, Task, Card
+from .models import Board, Task, Card
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -184,3 +181,8 @@ def create_board(request):
 
 def error(request):
 	return render(request, "error.html", {})
+
+def logout(request):
+	if request.user.is_authenticated():
+		logout(request)
+		return redirect("/login")
