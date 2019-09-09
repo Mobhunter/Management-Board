@@ -93,15 +93,8 @@ def remove_card(request, id):
 def remove_board(request, id):
 	if request.method == "GET":
 		board = Board.objects.get(id=id)
-		tasks = list(Task.objects.filter(board=board))
 		if board.owner != request.user:
 			return redirect("/error")
-		while tasks:
-			task = tasks.pop()
-			cards = list(Card.objects.filter(task=task))
-			while cards:
-				cards.pop().delete()
-			task.delete()
 		board.delete()
 		return redirect('/')
 	return redirect("/error")
@@ -115,9 +108,6 @@ def remove_task(request, id):
 		board_id = task.board.id
 		if user != request.user:
 			return redirect("/error")
-		cards = list(Card.objects.filter(task=task))
-		while cards:
-			cards.pop().delete()
 		task.delete()
 		return redirect('/board/%d' % board_id)
 	return redirect("/error")

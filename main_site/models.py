@@ -14,14 +14,14 @@ class Base(models.Model):
 
 
 class Board(Base):
-	owner = models.ForeignKey(User, models.DO_NOTHING)
+	owner = models.ForeignKey(User, models.CASCADE)
 
 
 class Task(Base):
-	board = models.ForeignKey(Board, models.DO_NOTHING)
+	board = models.ForeignKey(Board, models.CASCADE)
 
 
 class Card(Base):
 	description = models.CharField(max_length=1000)
 	deadline = models.DateTimeField()
-	task = models.ForeignKey(Task, models.DO_NOTHING)
+	task = models.ForeignKey(Task, models.CASCADE)
